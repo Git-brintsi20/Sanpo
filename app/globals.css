@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE7D9;
+  --vermilion: #C0392B;
+  --ink: #2C1810;
+  --ink-light: #5C3D2E;
+  --muted: #8B7355;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, Cambria, 'Times New Roman', serif;
+}
+
+@layer components {
+  .card {
+    @apply bg-white/70 backdrop-blur-sm border border-cream-dark rounded-lg shadow-sm;
+  }
+  
+  .btn-primary {
+    @apply bg-vermilion text-white px-4 py-2 rounded-md hover:bg-vermilion-light transition-colors font-medium text-sm;
+  }
+  
+  .btn-secondary {
+    @apply bg-cream-dark text-ink px-4 py-2 rounded-md hover:bg-cream-dark/80 transition-colors font-medium text-sm border border-muted/30;
+  }
+
+  .flashcard {
+    @apply bg-white border-2 border-cream-dark rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow;
+  }
+
+  .japanese-text {
+    @apply text-xl font-bold text-ink;
+    font-family: 'Hiragino Kana W4', 'Yu Gothic', 'MS Gothic', serif;
+  }
+}
+
+/* Postcard styles */
+.postcard {
+  background: linear-gradient(135deg, #fffdf7 0%, #f5f0e8 100%);
+  border: 1px solid #d4c5a9;
+  box-shadow: 2px 3px 8px rgba(44, 24, 16, 0.15);
+  position: relative;
+}
+
+.postcard::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 52px;
+  border: 2px solid #C0392B;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(192,57,43,0.1) 4px,
+    rgba(192,57,43,0.1) 8px
+  );
+}
+
+/* Sealed envelope */
+.envelope {
+  background: linear-gradient(160deg, #d4b896 0%, #c4a07a 100%);
+  border: 1px solid #b8956a;
+  position: relative;
+  overflow: hidden;
+}
+
+.envelope::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(160deg, #c4a07a 0%, #b8956a 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  opacity: 0.7;
+}
+
+/* Loading shimmer */
+@keyframes shimmer {
+  0% { background-position: -468px 0 }
+  100% { background-position: 468px 0 }
+}
+
+.shimmer {
+  background: linear-gradient(to right, #f5f0e8 8%, #ede7d9 18%, #f5f0e8 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Subtle texture */
+main {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B7355' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
